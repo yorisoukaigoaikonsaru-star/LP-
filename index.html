@@ -3,147 +3,167 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ｔっへｔ｜ｇｒｇへｒｈ</title>
-<meta name="description" content="ｇｒｇへｒｈ｜ｔっへｔ">
+<title>よりそう介護｜安い</title>
+<meta name="description" content="安い｜よりそう介護">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto&#43;Sans&#43;JP:wght@400;500;700;900&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Shippori&#43;Mincho:wght@400;600;800&amp;family=Zen&#43;Maru&#43;Gothic:wght@400;500&amp;display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style>
   :root{
-    --paper:#F4F7F8;
-    --paper-soft:#FFFFFF;
-    --ink:#2C3E50;
-    --pine:#3498DB;  
-    --pine-deep:#1F618D;
-    --coral:#1ABC9C;  
-    --coral-deep:#117A65;
-    --line:#E5E8E8;
+    --paper:#FBF7F0;
+    --paper-soft:#F1E8D8;
+    --ink:#2C2C2C;
+    --pine:#2F6F62;
+    --pine-deep:#204B42;
+    --coral:#E8794A;
+    --coral-deep:#C85F32;
+    --line:rgba(0,0,0,0.08);
   }
   *{box-sizing:border-box;margin:0;padding:0;}
   html{scroll-behavior:smooth;}
   body{
-    font-family:'Noto Sans JP', sans-serif;
+    font-family:'Shippori Mincho', serif;
     background:var(--paper);
     color:var(--ink);
-    line-height:1.7;
+    line-height:1.9;
+    -webkit-font-smoothing:antialiased;
   }
   img{max-width:100%;display:block;}
-  a{color:inherit;text-decoration:none;transition:0.3s;}
-  .wrap{max-width:1140px;margin:0 auto;padding:0 24px;}
+  a{color:inherit;text-decoration:none;transition:all 0.3s ease;}
+  .wrap{max-width:1100px;margin:0 auto;padding:0 24px;}
   
    
-  .slide-in-left { opacity: 0; transform: translateX(-40px); transition: 0.8s ease; }
-  .slide-in-right { opacity: 0; transform: translateX(40px); transition: 0.8s ease; }
-  .is-visible { opacity: 1; transform: translateX(0); }
+  .fade-in-up { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s ease; }
+  .fade-in-up.is-visible { opacity: 1; transform: translateY(0); }
 
    
-  .top-bar{ position:fixed;top:0;width:100%;z-index:100;background:rgba(255,255,255,0.95); backdrop-filter:blur(5px); box-shadow: 0 1px 0 var(--line); }
-  .top-bar .wrap{display:flex;align-items:center;justify-content:space-between;height:64px;}
-  .top-bar .office-name{font-weight:900;font-size:1.1rem;letter-spacing:1px; color:var(--pine-deep);}
-  .header-actions { display: flex; align-items: center; gap: 16px; }
-  .sns-icon { color: var(--pine); font-size: 1.2rem; }
-  .tel-btn{
-    background:var(--pine);color:#fff;padding:8px 20px;border-radius:4px;
-    font-weight:700;font-size:0.9rem; display: flex; align-items: center; gap: 8px;
+  .top-bar{
+    position:sticky;top:0;z-index:50;background:rgba(255,255,255,0.95);
+    backdrop-filter:blur(10px);border-bottom:1px solid var(--line);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.03);
   }
-  .tel-btn:hover { background: var(--pine-deep); }
-
-   
-  .hero{ position:relative;padding:120px 0 80px; background: #fff; overflow:hidden;}
-  .hero::after { content:''; position:absolute; bottom:0; right:0; width:50%; height:100%; background:var(--paper); clip-path: polygon(20% 0, 100% 0, 100% 100%, 0% 100%); z-index: 1;}
-  .hero .wrap{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center; position:relative; z-index:2;}
-  .eyebrow { color: var(--coral); font-weight: 700; font-size: 0.9rem; letter-spacing: 2px; margin-bottom: 16px; display: block; }
-  .hero h1{font-size:clamp(1.8rem,3.5vw,2.8rem);line-height:1.4;font-weight:900; margin-bottom:20px;}
-  .hero .lead{font-size:1rem;color:#555;}
-  .hero-photo-img{ aspect-ratio:4/3;object-fit:cover; border-radius: 8px; box-shadow: 0 15px 30px rgba(0,0,0,0.1); width:100%; }
-
-   
-  .section-title { font-size: 1.8rem; font-weight: 900; margin-bottom: 40px; border-left: 5px solid var(--coral); padding-left: 16px; }
-
-   
-  .empathy{background:var(--pine-deep);color:#fff;padding:80px 0;}
-  .empathy .section-title { border-left-color: #fff; }
-  .worry-grid{display:grid;grid-template-columns:repeat(auto-fit, minmax(300px, 1fr));gap:16px;}
-  .worry-card{ background:rgba(255,255,255,0.1); border-radius:4px; padding:24px; font-size:0.95rem; font-weight:500; border-left: 3px solid var(--coral);}
-
-   
-  .reasons{padding:100px 0; background: var(--paper);}
-  .reason-list{display:grid;grid-template-columns:repeat(auto-fit, minmax(300px, 1fr));gap:24px;}
-  .reason-card{ background:#fff; border-radius:8px; padding:32px; box-shadow: 0 4px 12px rgba(0,0,0,0.03); border-top: 4px solid var(--pine); }
-  .reason-num{ color:var(--line); font-size:3rem; font-weight:900; line-height:1; position:absolute; top: 16px; right: 24px; }
-  .reason-card { position: relative; }
-  .reason-card h3{font-size:1.2rem;margin-bottom:12px; font-weight: 700; position:relative; z-index:2;}
-  .reason-card p{font-size:0.95rem;color:#666; position:relative; z-index:2;}
-
-   
-  .facility-features, .gallery {padding:80px 0; background: #fff;}
-  .gallery-grid{display:grid;grid-template-columns:repeat(auto-fit, minmax(300px, 1fr));gap:16px;}
-  .gallery-grid img{width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:4px;}
+  .top-bar .wrap{display:flex;align-items:center;justify-content:space-between;height:70px;}
+  .top-bar .office-name{font-weight:800;font-size:1.2rem;color:var(--pine-deep);}
+  .nav-links { display: flex; gap: 24px; font-size: 0.9rem; font-weight: 600; color: #555; display: none; }
+  .nav-links a:hover { color: var(--coral); }
+  @media(min-width: 820px) { .nav-links { display: flex; } }
+  .sns-links { display: flex; gap: 12px; font-size: 1.2rem; color: var(--pine); }
+  .sns-links a:hover { color: var(--coral); transform: translateY(-2px); }
   
-  .staff {background:var(--paper);padding:80px 0;}
-  .staff-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px;}
-  .staff-card{background:#fff;border-radius:4px;padding:24px; border: 1px solid var(--line); display:flex; flex-direction:column; align-items:center; text-align:center;}
-  .staff-photo{ width:80px;height:80px;border-radius:50%;background:var(--line); margin-bottom:16px; }
-  .staff-card .role{font-size:0.8rem;color:var(--pine);font-weight:700; letter-spacing:1px;}
-  .staff-card .name{font-weight:900;font-size:1.1rem;margin-bottom:12px;}
+  .tel-btn{
+    background: linear-gradient(135deg, var(--coral), var(--coral-deep));
+    color:#fff;padding:10px 24px;border-radius:30px;
+    font-weight:600;font-size:0.95rem;white-space:nowrap;
+    box-shadow: 0 4px 15px rgba(232, 121, 74, 0.3);
+  }
+  .tel-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(232, 121, 74, 0.4); }
+
+   
+  .hero{ position:relative;padding:100px 0;overflow:hidden; background:var(--paper); }
+  .hero .wrap{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;}
+  .hero .eyebrow { font-family: 'Zen Maru Gothic', sans-serif; font-size: 0.85rem; font-weight: 500; letter-spacing: 0.2em; color: var(--pine); margin-bottom: 20px; display: inline-block; padding: 4px 12px; border: 1px solid var(--pine); border-radius: 20px; }
+  .hero h1{font-size:clamp(2rem,4vw,3.2rem);line-height:1.4;font-weight:800; margin-bottom: 24px; color: var(--pine-deep);}
+  .hero .lead{font-size:1.1rem;color:#555; line-height: 2;}
+  .hero-photo-img{ aspect-ratio:4/3;border-radius:8px;object-fit:cover; box-shadow: 0 20px 40px rgba(0,0,0,0.1); width:100%; }
+  
+   
+  .section-title { text-align: center; font-size: 2rem; font-weight: 800; margin-bottom: 50px; color: var(--pine-deep); }
+  .section-title::after { content: ''; display: block; width: 40px; height: 2px; background: var(--coral); margin: 16px auto 0; }
+
+   
+  .empathy{background:var(--pine-deep);color:#fff;padding:100px 0;}
+  .empathy .section-title { color: #fff; }
+  .empathy .section-title::after { background: #fff; }
+  .worry-grid{display:grid;grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));gap:24px;}
+  .worry-card{ background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:8px; padding:30px; font-size:1rem; line-height: 1.8; backdrop-filter: blur(5px); text-align: center; }
+
+   
+  .reasons{padding:100px 0; background: #fff;}
+  .reason-list{display:grid;grid-template-columns:repeat(auto-fit, minmax(300px, 1fr));gap:30px;}
+  .reason-card{ background:var(--paper); border:none; border-radius:8px; padding:40px 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.03); transition: transform 0.3s ease; }
+  .reason-card:hover { transform: translateY(-5px); }
+  .reason-num{ font-size:1.2rem;color:var(--coral); font-weight:800; margin-bottom:16px; display:block; border-bottom: 1px solid var(--line); padding-bottom: 8px; }
+  .reason-card h3{font-size:1.3rem;margin-bottom:12px; font-weight: 600;}
+  .reason-card p{font-size:0.95rem;color:#555;}
+
+   
+  .facility-features, .staff {background:var(--paper-soft);padding:100px 0;}
+  .gallery{padding:100px 0; background: #fff;}
+  .gallery-grid{display:grid;grid-template-columns:repeat(auto-fit, minmax(300px, 1fr));gap:20px;}
+  .gallery-grid img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:8px; box-shadow: 0 10px 20px rgba(0,0,0,0.05);}
+  
+  .staff-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:30px;}
+  .staff-card{background:#fff;border-radius:8px;padding:30px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.03);}
+  .staff-photo{ width:100px;height:100px;border-radius:50%;background:var(--paper); margin:0 auto 20px; border: 2px solid var(--pine); }
+  .staff-card .role{font-size:0.85rem;color:var(--coral);font-weight:600;margin-bottom:8px;}
+  .staff-card .name{font-weight:800;font-size:1.2rem;margin-bottom:16px;}
+  .staff-card .msg{font-size:0.95rem;color:#555;}
 
    
   .flow{padding:100px 0; background: #fff;}
-  .flow-steps{list-style:none;counter-reset:step;}
-  .flow-steps li{ counter-increment:step;position:relative;padding:24px 24px 24px 60px; background: var(--paper); border-radius: 4px; margin-bottom:16px; }
+  .flow-steps{list-style:none;counter-reset:step; max-width: 800px; margin: 0 auto;}
+  .flow-steps li{ counter-increment:step;position:relative;padding:30px 0 30px 80px; border-bottom:1px solid var(--line); }
+  .flow-steps li:last-child{border-bottom:none;}
   .flow-steps li::before{
-    content:counter(step);position:absolute;left:0;top:0;width:40px;height:100%;
-    background:var(--coral);color:#fff;display:flex;align-items:center;
-    justify-content:center;font-size: 1.2rem;font-weight:900; border-radius: 4px 0 0 4px;
+    content:counter(step);position:absolute;left:10px;top:25px;width:50px;height:50px;
+    border-radius:50%;background:var(--pine-deep);color:#fff;display:flex;align-items:center;
+    justify-content:center;font-size: 1.2rem;font-weight:800;
   }
-  .flow-steps .step-title{font-weight:900;font-size: 1.1rem;}
+  .flow-steps .step-title{font-weight:800;font-size: 1.2rem; margin-bottom:8px; color: var(--pine-deep);}
+  .flow-steps .step-desc{font-size:1rem;color:#555;}
 
    
-  .info{background:var(--pine);color:#fff;padding:80px 0;}
-  .info .section-title { border-left-color: #fff; }
-  .info-grid{display:grid;grid-template-columns:repeat(auto-fit, minmax(250px, 1fr));gap:16px;}
-  .info-card{background:rgba(0,0,0,0.1);border-radius:4px;padding:24px;}
-  .info-card .label{font-size:0.85rem; opacity:0.8; margin-bottom:8px; font-weight: 500;}
-  .info-card .value{font-size:1.1rem;font-weight:700;}
+  .info{background:var(--pine-deep);color:#fff;padding:100px 0;}
+  .info .section-title { color: #fff; }
+  .info .section-title::after { background: #fff; }
+  .info-grid{display:grid;grid-template-columns:repeat(auto-fit, minmax(300px, 1fr));gap:30px;}
+  .info-card{background:rgba(255,255,255,0.05);border-radius:8px;padding:30px; border: 1px solid rgba(255,255,255,0.1);}
+  .info-card .label{font-size:0.85rem;letter-spacing:0.1em;color:var(--coral);margin-bottom:12px; font-weight: 600;}
+  .info-card .value{font-size:1.1rem;font-weight:600;}
 
    
-  .news{padding:80px 0; background: #fff;}
-  .news-list{list-style:none;}
-  .news-item{border-bottom:1px solid var(--line);padding:20px 0; display:flex; flex-direction:column;}
-  @media(min-width:768px){ .news-item{flex-direction:row; align-items:baseline; gap:24px;} }
-  .news-title{font-weight:700;font-size:1rem; color: var(--pine); flex-shrink:0; width: 200px;}
+  .news{padding:100px 0; background: var(--paper);}
+  .news-list{list-style:none; max-width: 800px; margin: 0 auto;}
+  .news-item{border-bottom:1px solid var(--line);padding:24px 0;}
+  .news-item:first-child{border-top:1px solid var(--line);}
+  .news-title{font-weight:800;font-size:1.1rem; color: var(--pine-deep);}
+  .news-item p{font-size:1rem;color:#555;margin-top:10px;}
 
    
-  .recruit{background:var(--paper);padding:80px 0; border-top: 1px solid var(--line);}
-  .recruit .wrap{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:24px;}
-  .recruit h2{font-size:1.6rem; font-weight:900;}
-  .recruit p{font-size:1rem; margin-top:8px;}
-  .recruit .tel-btn-white{ background:var(--pine);color:#fff;padding:12px 32px;border-radius:4px; font-weight:700;}
-  .recruit .tel-btn-white:hover { background: var(--pine-deep); }
+  .recruit{background:var(--coral);color:#fff;padding:80px 0;}
+  .recruit .wrap{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:30px;}
+  .recruit h2{font-size:1.8rem;}
+  .recruit p{font-size:1.05rem;opacity:0.9;margin-top:12px;max-width:40em;}
+  .recruit .tel-btn-white{ background:#fff;color:var(--coral-deep);padding:16px 40px;border-radius:40px; font-weight:800;white-space:nowrap; box-shadow: 0 10px 20px rgba(0,0,0,0.1); transition: transform 0.3s ease; }
+  .recruit .tel-btn-white:hover { transform: translateY(-3px); }
 
    
-  footer{background:var(--ink);color:#fff;padding:60px 0 30px;}
-  footer .office-name{font-size:1.3rem;margin-bottom:24px; font-weight: 900; letter-spacing:1px;}
-  footer .foot-grid{display:grid;grid-template-columns:repeat(auto-fit, minmax(200px, 1fr));gap:24px;font-size:0.9rem; margin-bottom: 40px;}
-  footer .foot-grid div span{display:block;color:var(--coral);font-size:0.75rem; font-weight: 700; margin-bottom:4px;}
-  .copyright{font-size:0.8rem; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px;}
+  footer{background:var(--ink);color:#EFE7D6;padding:80px 0 40px;}
+  footer .office-name{font-size:1.5rem;margin-bottom:24px; font-weight: 800;}
+  footer .foot-grid{display:grid;grid-template-columns:repeat(auto-fit, minmax(200px, 1fr));gap:30px;font-size:0.95rem;color:#ccc; margin-bottom: 40px;}
+  footer .foot-grid div span{display:block;color:#888;font-size:0.8rem;letter-spacing:0.1em;margin-bottom:8px;}
+  footer .footer-sns { display: flex; gap: 20px; font-size: 1.5rem; margin-bottom: 40px; }
+  footer .footer-sns a { color: #fff; opacity: 0.5; }
+  footer .footer-sns a:hover { opacity: 1; color: var(--coral); }
+  footer .copyright{font-size:0.85rem;color:#666; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; text-align: center;}
 
   @media (max-width:820px){
-    .hero::after { display:none; }
-    .hero .wrap{grid-template-columns:1fr;}
+    .hero .wrap{grid-template-columns:1fr; gap: 40px;}
     .hero-photo-img{order:-1;}
+    .section-title { font-size: 1.6rem; margin-bottom: 30px; }
+    .hero h1 { font-size: 2rem; }
   }
    
   .faq{background:var(--paper-soft);padding:76px 0;}
   .faq h2{font-size:1.6rem;margin-bottom:30px;}
   .faq-item{background:#fff;border-radius:12px;margin-bottom:16px;padding:20px 24px;border:1px solid var(--line);}
   .faq-q{font-weight:700;color:var(--pine-deep);margin-bottom:12px;position:relative;padding-left:32px;font-size:1.05rem;}
-   
-.faq-q::before{content:'Q.';position:absolute;left:0;color:var(--coral);font-family:'Noto Sans JP', sans-serif;font-size:1.4rem;top:-4px; font-weight:900;}
-.faq-a::before{content:'A.';position:absolute;left:0;color:var(--pine);font-family:'Noto Sans JP', sans-serif;font-size:1.4rem;top:-4px; font-weight:900;}
+  .faq-q::before{content:'Q.';position:absolute;left:0;color:var(--coral);font-family:'Shippori Mincho',serif;font-size:1.4rem;top:-4px;}
+  .faq-a{color:#5A4E3E;font-size:.94rem;position:relative;padding-left:32px;}
+  .faq-a::before{content:'A.';position:absolute;left:0;color:var(--pine);font-family:'Shippori Mincho',serif;font-size:1.4rem;top:-4px;}
   
    
   .sns-wrap { display: flex; gap: 8px; margin-left: auto; }
@@ -159,58 +179,73 @@
 </head>
 <body>
 
-
 <div class="top-bar">
   <div class="wrap" style="display:flex; align-items:center; justify-content:space-between;">
-    <span class="office-name">ｔっへｔ</span>
-    <div style="display:flex; align-items:center;">
+    
+    <span class="office-name">よりそう介護</span>
+
+    
+    <div class="nav-links">
+      <a href="#empathy">お悩み</a>
+      <a href="#reasons">特徴</a>
+      <a href="#flow">ご利用の流れ</a>
+    </div>
+
+    
+    <div style="display: flex; align-items: center; gap: 20px;">
       <div class="sns-wrap">
-        <a href="t43yy3y" class="sns-btn line-btn" target="_blank">LINEで相談</a><a href="3yyqhhh" class="sns-btn insta-btn" target="_blank">Instagram</a>
+        
       </div>
-      <a class="tel-btn" href="tel:" style="margin-left:12px;">電話で相談する</a>
+      <a class="tel-btn" href="tel:09020311103">
+        <i class="fas fa-phone-alt"></i> ご相談はこちら
+      </a>
     </div>
   </div>
 </div>
 
 <header class="hero">
-  <div class="wrap">
-    <div class="slide-in-left">
-      <span class="eyebrow">通所介護（デイサービス）｜ふぇえｇｇ</span>
-      <h1>ｇｒｇへｒｈ</h1>
-      <p class="lead">grehhhehh</p>
+  <div class="wrap fade-in-up">
+    <div>
+      <span class="eyebrow">訪問介護｜対応エリアはお問い合わせください</span>
+      <h1>安い</h1>
+      <p class="lead">一人ひとりに寄り添った対応を心がけています。</p>
     </div>
-    <div class="slide-in-right">
-      <div class="hero-photo">スタッフ・事業所の写真<br>（後から差し替え可能です）</div>
-    </div>
+    <img class="hero-photo-img" src="hero.jpg" alt="施設・事業所の写真">
   </div>
 </header>
 
-<section class="empathy">
-  <div class="wrap slide-in-left">
+<section id="empathy" class="empathy">
+  <div class="wrap fade-in-up">
     <h2 class="section-title">こんなお悩みありませんか？</h2>
     <div class="worry-grid">
-      <div class="worry-card">どんな施設なのか、実際の雰囲気が分からず不安</div>
-<div class="worry-card">本人が施設での生活に慣れてくれるか心配</div>
-<div class="worry-card">見学や体験利用がどう進むのか分からない</div>
+      <div class="worry-card">急に体調が変わったとき、誰に相談すればいいか分からない</div>
+<div class="worry-card">家族だけで介護を続けることに、限界を感じている</div>
+<div class="worry-card">どんなサービスが自分たちに合うのか、比べる時間がない</div>
     </div>
   </div>
 </section>
 
-<section class="reasons">
-  <div class="wrap slide-in-right">
-    <h2 class="section-title">ｔっへｔが選ばれる理由</h2>
+<section id="reasons" class="reasons">
+  <div class="wrap fade-in-up">
+    <h2 class="section-title">よりそう介護が選ばれる理由</h2>
     <div class="reason-list">
       
     <div class="reason-card">
       <span class="reason-num">01</span>
-      <h3>スタッフの人柄</h3>
-      <p>一人ひとりに寄り添う気持ちを大切に、現場のスタッフが対応いたします。</p>
+      <h3>対応の早さ</h3>
+      <p>ご連絡をいただいてから、迅速に対応いたします。急なご相談も歓迎です。</p>
     </div>
 
     <div class="reason-card">
       <span class="reason-num">02</span>
-      <h3>24時間対応</h3>
-      <p>24時間365日、いつでもご相談いただける体制を整えています。</p>
+      <h3>料金の分かりやすさ</h3>
+      <p>安い</p>
+    </div>
+
+    <div class="reason-card">
+      <span class="reason-num">03</span>
+      <h3>スタッフの人柄</h3>
+      <p>一人ひとりに寄り添う気持ちを大切に、現場のスタッフが対応いたします。</p>
     </div>
     </div>
   </div>
@@ -218,21 +253,10 @@
 
 
 <section class="facility-features">
-  <div class="wrap slide-in-left">
+  <div class="wrap fade-in-up">
     <h2 class="section-title">施設の特徴・設備</h2>
     <div class="reason-list">
       
-    <div class="reason-card">
-      <span class="reason-num">01</span>
-      <h3>入浴サービス</h3>
-      <p>専門スタッフによる安全な入浴介助を行っています。</p>
-    </div>
-
-    <div class="reason-card">
-      <span class="reason-num">02</span>
-      <h3>24時間看護師常駐</h3>
-      <p>看護師が常駐し、24時間体制で健康管理を行っています。</p>
-    </div>
     </div>
   </div>
 </section>
@@ -240,7 +264,7 @@
 
 
 <section class="gallery">
-  <div class="wrap slide-in-right">
+  <div class="wrap fade-in-up">
     <h2 class="section-title">施設の様子</h2>
     <div class="gallery-grid">
       
@@ -250,28 +274,33 @@
 
 
 <section class="staff">
-  <div class="wrap slide-in-left">
+  <div class="wrap fade-in-up">
     <h2 class="section-title">スタッフ紹介</h2>
     <div class="staff-grid">
       
     <div class="staff-card">
       <div class="staff-photo"></div>
-      <div class="role">スタッフ</div>
-      <div class="name">スタッフ紹介準備中</div>
-      <div class="msg">近日、担当スタッフをご紹介いたします。</div>
+      <div class="role">監督職</div>
+      <div class="name">鰐渕裕也</div>
+      <div class="msg">私は天才です</div>
     </div>
       
     </div>
   </div>
 </section>
 
-<section class="flow">
-  <div class="wrap slide-in-right">
+<section id="flow" class="flow">
+  <div class="wrap fade-in-up">
     <h2 class="section-title">ご利用開始までの流れ</h2>
     <ul class="flow-steps">
       
     <li>
-      <div class="step-title">ehhehhh</div>
+      <div class="step-title">お問い合わせ</div>
+      
+    </li>
+
+    <li>
+      <div class="step-title">見学</div>
       
     </li>
     </ul>
@@ -279,25 +308,25 @@
 </section>
 
 <section class="info">
-  <div class="wrap slide-in-left">
+  <div class="wrap fade-in-up">
     <h2 class="section-title">料金・対応エリア</h2>
     <div class="info-grid">
       <div class="info-card">
         <div class="label">対応エリア</div>
-        <div class="value">ふぇえｇｇ</div>
+        <div class="value">対応エリアはお問い合わせください</div>
       </div>
       <div class="info-card">
         <div class="label">定休日</div>
-        <div class="value">grehhehe</div>
+        <div class="value">不定休</div>
       </div>
       <div class="info-card">
         <div class="label">お電話</div>
-        <div class="value">ふぇｆｇｇｗ</div>
+        <div class="value">09020311103</div>
       </div>
       
       <div class="info-card" style="grid-column: 1 / -1;">
         <div class="label">アクセス・駐車場</div>
-        <div class="value">r4t4334yy3</div>
+        <div class="value"></div>
       </div>
       
     </div>
@@ -306,16 +335,15 @@
 
 <section class="faq">
   <div class="wrap">
-    
-<h2 class="section-title">よくあるご質問</h2>
+    <h2 class="mincho">よくあるご質問</h2>
     <div class="faq-list">
-      <br>Qmljjjjj<br>Akkjpj
+      
     </div>
   </div>
 </section>
 
 <section class="news">
-  <div class="wrap slide-in-right">
+  <div class="wrap fade-in-up">
     <h2 class="section-title">お知らせ</h2>
     <ul class="news-list">
       
@@ -329,30 +357,36 @@
 
 
 <section class="recruit">
-  <div class="wrap slide-in-left">
+  <div class="wrap fade-in-up">
     <div>
       <h2>スタッフ募集中です</h2>
-      <p>資格取得支援あり</p>
+      <p>特になし</p>
     </div>
-    <a class="tel-btn-white" href="tel:">採用について問い合わせる</a>
+    <a class="tel-btn-white" href="tel:09020311103">採用について問い合わせる</a>
   </div>
 </section>
 
 
 <footer>
   <div class="wrap">
-    <div class="office-name">ｔっへｔ</div>
-    <div class="foot-grid">
-      <div><span>電話番号</span>ふぇｆｇｇｗ</div>
-      <div><span>所在地</span>eggeh</div>
-      <div><span>対応エリア</span>ふぇえｇｇ</div>
-      <div><span>定休日</span>grehhehe</div>
+    <div class="office-name">よりそう介護</div>
+    <div class="footer-sns">
+      <a href="#" target="_blank"><i class="fab fa-line"></i></a>
+      <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+      <a href="#" target="_blank"><i class="fab fa-facebook"></i></a>
     </div>
-    <div class="copyright">&copy; ｔっへｔ</div>
+    <div class="foot-grid">
+      <div><span>電話番号</span>09020311103</div>
+      <div><span>所在地</span>住所はお問い合わせください</div>
+      <div><span>対応エリア</span>対応エリアはお問い合わせください</div>
+      <div><span>定休日</span>不定休</div>
+    </div>
+    <div class="copyright">&copy; よりそう介護 All Rights Reserved.</div>
   </div>
 </footer>
 
 <script>
+  
   document.addEventListener("DOMContentLoaded", function() {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
@@ -362,7 +396,7 @@
       });
     }, { threshold: 0.1 });
 
-    document.querySelectorAll('.slide-in-left, .slide-in-right').forEach(el => {
+    document.querySelectorAll('.fade-in-up').forEach(el => {
       observer.observe(el);
     });
   });
