@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>写真の変更｜あｓっじょじょｊ</title>
+<style>
+  body{font-family:sans-serif;background:#F4F7F8;padding:24px;color:#2C3E50;}
+  .box{max-width:480px;margin:0 auto;background:#fff;padding:24px;border-radius:8px;box-shadow:0 4px 15px rgba(0,0,0,0.08);}
+  h1{font-size:1.2rem;margin-bottom:16px;}
+  label{display:block;font-weight:bold;margin:16px 0 6px;font-size:0.9rem;}
+  input[type=password],input[type=file],select{width:100%;padding:10px;border:1px solid #D5DBDB;border-radius:4px;box-sizing:border-box;}
+  button{width:100%;padding:12px;margin-top:20px;background:#3498DB;color:#fff;border:none;border-radius:4px;font-weight:bold;cursor:pointer;}
+  .msg{margin-top:14px;font-size:0.9rem;padding:10px;border-radius:4px;display:none;}
+  .msg.ok{background:#E8F8F0;color:#1E7B4D;display:block;}
+  .msg.ng{background:#FBEAEA;color:#B23B3B;display:block;}
+  .save-row{display:flex;align-items:center;gap:8px;margin-top:10px;font-size:0.85rem;color:#666;}
+</style>
+</head>
+<body>
+<div class="box">
+  <h1>あｓっじょじょｊ｜写真の変更</h1>
+  <label>編集用の合言葉（納品メールに記載）</label>
+  <input type="password" id="editToken">
+  <div class="save-row"><input type="checkbox" id="rememberToken"><label for="rememberToken" style="margin:0;font-weight:normal;">このブラウザに合言葉を保存する</label></div>
+
+  <label>変更する写真</label>
+  <select id="slot">
+    <option value="hero">ヒーロー画像（一番上の写真）</option>
+    <option value="president">代表者・管理者の写真</option>
+    <option value="gallery">施設の様子（ギャラリーに追加）</option>
+    <option value="staff-1">スタッフ写真1人目</option>
+    <option value="staff-2">スタッフ写真2人目</option>
+    <option value="staff-3">スタッフ写真3人目</option>
+    <option value="staff-4">スタッフ写真4人目</option>
+    <option value="staff-5">スタッフ写真5人目</option>
+  </select>
+  <p style="font-size:0.8rem;color:#888;margin-top:6px;">※「スタッフ写真○人目」は、スタッフ紹介欄に表示されている順番（上から1人目、2人目…）でお選びください。</p>
+
+  <label>新しい写真ファイル</label>
+  <input type="file" id="photoFile" accept="image/*">
+
+  <button onclick="uploadPhoto()">保存する</button>
+  <div class="msg" id="msg"></div>
+</div>
+
+<script>
+  const UNIQUE_ID = "plkihhmq";
+  const WEBAPP_URL = "https://script.google.com/macros/s/AKfycbzFF7mskDCM0wga2e1SPWnqK7bUg3urPjR9zB_RjJYGFj5F3PxcSZz1_NRx3Hj62YNx9Q/exec";
+
+  window.addEventListener('DOMContentLoaded', () => {
+    const saved = localStorage.getItem('editToken_' + UNIQUE_ID);
+    if (saved) { document.getElementById('editToken').value = saved; document.getElementById('rememberToken').checked = true; }
+  });
+
+  function compressImage(file, maxW) {
+    return new Promise((resolve) => {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const img = new Image();
+        img.onload = () => {
+          const canvas = document.createElement('canvas');
+          let w = img.width, h = img.height;
+          if (w > maxW) { h = Math.round(h * maxW / w); w = maxW; }
+          canvas.width = w; canvas.height = h;
+          canvas.getContext('2d').drawImage(img, 0, 0, w, h);
+          resolve(canvas.toDataURL('image/jpeg', 0.8).split(',')[1]);
+        };
+        img.src = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    });
+  }
+
+  async function uploadPhoto() {
+    const token = document.getElementById('editToken').value.trim();
+    const slot = document.getElementById('slot').value;
+    const file = document.getElementById('photoFile').files[0];
+    const msg = document.getElementById('msg');
+    msg.className = 'msg';
+
+    if (!token) { msg.className = 'msg ng'; msg.textContent = '合言葉を入力してください。'; return; }
+    if (!file) { msg.className = 'msg ng'; msg.textContent = '写真ファイルを選択してください。'; return; }
+
+    if (document.getElementById('rememberToken').checked) {
+      localStorage.setItem('editToken_' + UNIQUE_ID, token);
+    } else {
+      localStorage.removeItem('editToken_' + UNIQUE_ID);
+    }
+
+    msg.className = 'msg'; msg.style.display = 'block'; msg.textContent = 'アップロード中です...';
+
+    try {
+      const base64 = await compressImage(file, 1200);
+      const res = await fetch(WEBAPP_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify({ uniqueId: UNIQUE_ID, editToken: token, slot: slot, imageBase64: base64 })
+      });
+      const json = await res.json();
+      if (json.success) {
+        msg.className = 'msg ok';
+        msg.textContent = '保存しました。反映まで数分かかる場合があります。';
+      } else {
+        msg.className = 'msg ng';
+        msg.textContent = json.error || '保存に失敗しました。合言葉をご確認ください。';
+      }
+    } catch (err) {
+      msg.className = 'msg ng';
+      msg.textContent = '通信エラーが発生しました。時間をおいて再度お試しください。';
+    }
+  }
+</script>
+</body>
+</html>
