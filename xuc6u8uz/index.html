@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>よりそうAI｜介護施設の未来をAIで明るくする</title>
+<meta name="description" content="介護施設の未来をAIで明るくする｜よりそうAI">
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;600;800&family=Zen+Maru+Gothic:wght@400;500&display=swap" rel="stylesheet">
+<!-- FontAwesome for SNS Icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+  :root{
+    --paper:#FCF6EE;
+    --paper-soft:#F5E6D3;
+    --ink:#2C2C2C;
+    --pine:#B5622A;
+    --pine-deep:#7A3F1B;
+    --coral:#E85D3D;
+    --coral-deep:#C2431F;
+    --line:rgba(0,0,0,0.08);
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Shippori Mincho', serif;
+    background:var(--paper);
+    color:var(--ink);
+    line-height:1.9;
+    -webkit-font-smoothing:antialiased;
+  }
+  img{max-width:100%;display:block;}
+  a{color:inherit;text-decoration:none;transition:all 0.3s ease;}
+  .wrap{max-width:1100px;margin:0 auto;padding:0 24px;}
+  
+  /* アニメーション用クラス */
+  .fade-in-up { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s ease; }
+  .fade-in-up.is-visible { opacity: 1; transform: translateY(0); }
+
+  /* ---------- ヘッダー固定バー ---------- */
+  .top-bar{
+    position:sticky;top:0;z-index:50;background:rgba(255,255,255,0.95);
+    backdrop-filter:blur(10px);border-bottom:1px solid var(--line);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+  }
+  .top-bar .wrap{display:flex;align-items:center;justify-content:space-between;height:70px;}
+  .top-bar .office-name{font-weight:800;font-size:1.2rem;color:var(--pine-deep);}
+  .nav-links { display: flex; gap: 24px; font-size: 0.9rem; font-weight: 600; color: #555; display: none; }
+  .nav-links a:hover { color: var(--coral); }
+  @media(min-width: 820px) { .nav-links { display: flex; } }
+  .sns-links { display: flex; gap: 12px; font-size: 1.2rem; color: var(--pine); }
+  .sns-links a:hover { color: var(--coral); transform: translateY(-2px); }
+  
+  .tel-btn{
+    background: linear-gradient(135deg, var(--coral), var(--coral-deep));
+    color:#fff;padding:10px 24px;border-radius:30px;
+    font-weight:600;font-size:0.95rem;white-space:nowrap;
+    box-shadow: 0 4px 15px rgba(232, 121, 74, 0.3);
+  }
+  .tel-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(232, 121, 74, 0.4); }
+
+  /* ---------- ヒーロー ---------- */
+  .hero{ position:relative;padding:100px 0;overflow:hidden; background:var(--paper); }
+  .hero .wrap{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;}
+  .hero.no-hero-photo .wrap{grid-template-columns:1fr;max-width:700px;margin:0 auto;text-align:center;}
+  .hero.no-hero-photo .hero-photo-img{display:none;}
+  .hero .eyebrow { font-family: 'Zen Maru Gothic', sans-serif; font-size: 0.85rem; font-weight: 500; letter-spacing: 0.2em; color: var(--pine); margin-bottom: 20px; display: inline-block; padding: 4px 12px; border: 1px solid var(--pine); border-radius: 20px; }
+  .hero h1{font-size:clamp(2rem,4vw,3.2rem);line-height:1.4;font-weight:800; margin-bottom: 24px; color: var(--pine-deep);}
+  .hero .lead{font-size:1.1rem;color:#555; line-height: 2;}
+  .hero-photo-img{ aspect-ratio:4/3;border-radius:8px;object-fit:cover; box-shadow: 0 20px 40px rgba(0,0,0,0.1); width:100%; }
+  
+  /* セクション共通 */
+  .section-title { text-align: center; font-size: 2rem; font-weight: 800; margin-bottom: 50px; color: var(--pine-deep); }
+  .section-title::after { content: ''; display: block; width: 40px; height: 2px; background: var(--coral); margin: 16px auto 0; }
+
+  /* ---------- 共感セクション ---------- */
+  .empathy{background:var(--pine-deep);color:#fff;padding:100px 0;}
+  .empathy .section-title { color: #fff; }
+  .empathy .section-title::after { background: #fff; }
+  .worry-grid{display:flex;flex-wrap:wrap;justify-content:center;gap:24px;}
+  .worry-card{flex:1 1 280px;max-width:364px;}
+  .worry-card{ background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:8px; padding:30px; font-size:1rem; line-height: 1.8; backdrop-filter: blur(5px); text-align: center; }
+
+  /* ---------- 選ばれる理由 ---------- */
+  .reasons{padding:100px 0; background: #fff;}
+  .reason-list{display:flex;flex-wrap:wrap;justify-content:center;gap:30px;}
+  .reason-card{flex:1 1 300px;max-width:390px;}
+  .reason-card{ background:var(--paper); border:none; border-radius:8px; padding:40px 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.03); transition: transform 0.3s ease; }
+  .reason-card:hover { transform: translateY(-5px); }
+  .reason-num{ font-size:1.2rem;color:var(--coral); font-weight:800; margin-bottom:16px; display:block; border-bottom: 1px solid var(--line); padding-bottom: 8px; }
+  .reason-card h3{font-size:1.3rem;margin-bottom:12px; font-weight: 600;}
+  .reason-card p{font-size:0.95rem;color:#555;}
+
+  /* ---------- 施設の特徴・ギャラリー・スタッフ ---------- */
+  .facility-features, .staff {background:var(--paper-soft);padding:100px 0;}
+  .gallery{padding:100px 0; background: #fff;}
+  .gallery-grid{display:flex;flex-wrap:wrap;justify-content:center;gap:20px;}
+  .gallery-grid img{flex:1 1 300px;max-width:390px;}
+  .gallery-grid img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:8px; box-shadow: 0 10px 20px rgba(0,0,0,0.05);}
+  
+  .staff-grid{display:flex;flex-wrap:wrap;justify-content:center;gap:30px;}
+  .staff-card{flex:1 1 260px;max-width:338px;}
+  .staff-card{background:#fff;border-radius:8px;padding:30px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.03);}
+  .staff-photo{ width:100px;height:100px;border-radius:50%;background:var(--paper); margin:0 auto 20px; border: 2px solid var(--pine);overflow:hidden} .staff-photo img{width:100%;height:100%;object-fit:cover;display:block;}
+  .staff-card .role{font-size:0.85rem;color:var(--coral);font-weight:600;margin-bottom:8px;}
+  .staff-card .name{font-weight:800;font-size:1.2rem;margin-bottom:16px;}
+  .staff-card .msg{font-size:0.95rem;color:#555;}
+
+  /* ---------- 利用の流れ ---------- */
+  .flow{padding:100px 0; background: #fff;}
+  .flow-steps{list-style:none;counter-reset:step; max-width: 800px; margin: 0 auto;}
+  .flow-steps li{ counter-increment:step;position:relative;padding:30px 0 30px 80px; border-bottom:1px solid var(--line); }
+  .flow-steps li:last-child{border-bottom:none;}
+  .flow-steps li::before{
+    content:counter(step);position:absolute;left:10px;top:25px;width:50px;height:50px;
+    border-radius:50%;background:var(--pine-deep);color:#fff;display:flex;align-items:center;
+    justify-content:center;font-size: 1.2rem;font-weight:800;
+  }
+  .flow-steps .step-title{font-weight:800;font-size: 1.2rem; margin-bottom:8px; color: var(--pine-deep);}
+  .flow-steps .step-desc{font-size:1rem;color:#555;}
+
+  /* ---------- 料金・エリア ---------- */
+  .info{background:var(--pine-deep);color:#fff;padding:100px 0;}
+  .info .section-title { color: #fff; }
+  .info .section-title::after { background: #fff; }
+  .info-grid{display:flex;flex-wrap:wrap;justify-content:center;gap:30px;}
+  .info-card{flex:1 1 300px;max-width:390px;}
+  .info-card{background:rgba(255,255,255,0.05);border-radius:8px;padding:30px; border: 1px solid rgba(255,255,255,0.1);}
+  .info-card .label{font-size:0.85rem;letter-spacing:0.1em;color:var(--coral);margin-bottom:12px; font-weight: 600;}
+  .info-card .value{font-size:1.1rem;font-weight:600;}
+
+  /* ---------- お知らせ ---------- */
+  .news{padding:100px 0; background: var(--paper);}
+  .news-list{list-style:none; max-width: 800px; margin: 0 auto;}
+  .news-item{border-bottom:1px solid var(--line);padding:24px 0;}
+  .news-item:first-child{border-top:1px solid var(--line);}
+  .news-title{font-weight:800;font-size:1.1rem; color: var(--pine-deep);}
+  .news-item p{font-size:1rem;color:#555;margin-top:10px;}
+
+  /* ---------- 採用 ---------- */
+  .recruit{background:var(--coral);color:#fff;padding:80px 0;}
+  .recruit .wrap{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:30px;}
+  .recruit h2{font-size:1.8rem;}
+  .recruit p{font-size:1.05rem;opacity:0.9;margin-top:12px;max-width:40em;}
+  .recruit .tel-btn-white{ background:#fff;color:var(--coral-deep);padding:16px 40px;border-radius:40px; font-weight:800;white-space:nowrap; box-shadow: 0 10px 20px rgba(0,0,0,0.1); transition: transform 0.3s ease; }
+  .recruit .tel-btn-white:hover { transform: translateY(-3px); }
+
+  /* ---------- フッター ---------- */
+  footer{background:var(--ink);color:#EFE7D6;padding:80px 0 40px;}
+  footer .office-name{font-size:1.5rem;margin-bottom:24px; font-weight: 800;}
+  footer .foot-grid{display:flex;flex-wrap:wrap;justify-content:center;gap:30px;font-size:0.95rem;color:#ccc; margin-bottom: 40px;}
+  footer .foot-grid div{flex:1 1 200px;max-width:260px;}
+  footer .foot-grid div span{display:block;color:#888;font-size:0.8rem;letter-spacing:0.1em;margin-bottom:8px;}
+  footer .footer-sns { display: flex; gap: 20px; font-size: 1.5rem; margin-bottom: 40px; }
+  footer .footer-sns a { color: #fff; opacity: 0.5; }
+  footer .footer-sns a:hover { opacity: 1; color: var(--coral); }
+  footer .copyright{font-size:0.85rem;color:#666; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; text-align: center;}
+
+  @media (max-width:820px){
+    .hero .wrap{grid-template-columns:1fr; gap: 40px;}
+    .hero-photo-img{order:-1;}
+    .section-title { font-size: 1.6rem; margin-bottom: 30px; }
+    .hero h1 { font-size: 2rem; }
+  }
+  /* ---------- よくある質問 (FAQ) ---------- */
+  .faq{background:var(--paper-soft);padding:76px 0;}
+  .faq h2{font-size:1.6rem;margin-bottom:30px;}
+  .faq-item{background:#fff;border-radius:12px;margin-bottom:16px;padding:20px 24px;border:1px solid var(--line);}
+  .faq-q{font-weight:700;color:var(--pine-deep);margin-bottom:12px;position:relative;padding-left:32px;font-size:1.05rem;}
+  .faq-q::before{content:'Q.';position:absolute;left:0;color:var(--coral);font-family:'Shippori Mincho',serif;font-size:1.4rem;top:-4px;}
+  .faq-a{color:#5A4E3E;font-size:.94rem;position:relative;padding-left:32px;}
+  .faq-a::before{content:'A.';position:absolute;left:0;color:var(--pine);font-family:'Shippori Mincho',serif;font-size:1.4rem;top:-4px;}
+  
+  /* ---------- SNSボタン ---------- */
+  .sns-wrap { display: flex; gap: 8px; margin-left: auto; }
+  .sns-btn{display:inline-flex;align-items:center;justify-content:center;padding:8px 16px;border-radius:999px;font-weight:700;font-size:.85rem;color:#fff !important;text-decoration:none;transition:opacity 0.2s;}
+  .sns-btn:hover{opacity:0.8;}
+  .line-btn{background:#06C755;}
+  .insta-btn{background:linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);}
+  
+  @media (max-width:820px){
+    .sns-wrap { display: none; } /* スマホではヘッダーのSNSボタンを隠す等の調整 */
+  }
+</style>
+
+<link rel="canonical" href="https://yorisoukaigoaikonsaru-star.github.io/LP-/xuc6u8uz/">
+<meta property="og:type" content="business.business">
+<meta property="og:title" content="よりそうAI｜介護施設の未来をAIで明るくする">
+<meta property="og:description" content="介護施設の未来をAIで明るくする">
+<meta property="og:url" content="https://yorisoukaigoaikonsaru-star.github.io/LP-/xuc6u8uz/">
+
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"LocalBusiness","name":"よりそうAI","description":"介護施設の未来をAIで明るくする","telephone":"09020311103","address":{"@type":"PostalAddress","streetAddress":"福井県吉田郡永平寺町谷口"},"areaServed":"全国","url":"https://yorisoukaigoaikonsaru-star.github.io/LP-/xuc6u8uz/"}</script>
+</head>
+<body>
+
+<div class="top-bar">
+  <div class="wrap" style="display:flex; align-items:center; justify-content:space-between;">
+    <!-- 左側：オフィス名 -->
+    <span class="office-name">よりそうAI</span>
+
+    <!-- 中央：ナビゲーション -->
+    <div class="nav-links">
+      <a href="#empathy">お悩み</a>
+      <a href="#reasons">特徴</a>
+      <a href="#flow">ご利用の流れ</a>
+    </div>
+
+    <!-- 右側：SNSと電話ボタン -->
+    <div style="display: flex; align-items: center; gap: 20px;">
+      
+      <a class="tel-btn" href="tel:09020311103">
+        <i class="fas fa-phone-alt"></i> ご相談はこちら
+      </a>
+    </div>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="wrap fade-in-up">
+    <div>
+      <span class="eyebrow">その他<!-- AREA_EYEBROW_SECTION_START -->｜全国<!-- AREA_EYEBROW_SECTION_END --></span>
+      <h1><!-- CATCH_COPY_START -->介護施設の未来をAIで明るくする<!-- CATCH_COPY_END --></h1>
+
+    </div>
+    <img class="hero-photo-img" src="hero.jpg" alt="施設・事業所の写真" onerror="this.closest('.hero').classList.add('no-hero-photo')">
+  </div>
+</header>
+
+    <section class="president-msg" style="padding: 80px 0; background: #fff;">
+      <style>
+        .president-msg .president-photo-wrap{flex:1;min-width:250px;}
+        .president-msg.no-president-photo .president-photo-wrap{display:none;}
+        .president-msg.no-president-photo .president-flex{justify-content:center;}
+        .president-msg.no-president-photo .president-text{flex:2 1 100%;max-width:700px;margin:0 auto;text-align:center;}
+      </style>
+      <div class="wrap" style="max-width: 800px; margin: 0 auto;">
+        <h2 class="section-title" style="text-align:center; font-size:1.8rem; margin-bottom:40px; color:var(--pine-deep); font-weight:bold;">代表メッセージ</h2>
+        <div class="president-flex" style="display:flex; flex-wrap:wrap; gap:30px; align-items:center;">
+          <div class="president-photo-wrap">
+            <img src="president.jpg" alt="代表者" style="width:100%; border-radius:8px; box-shadow:0 5px 15px rgba(0,0,0,0.1);" onerror="this.closest('.president-msg').classList.add('no-president-photo'); this.style.display='none';">
+          </div>
+          <div class="president-text" style="flex:2; min-width:300px;">
+            <p style="line-height:1.8; font-size:1.05rem; color:#444;"><!-- MESSAGE_START -->長年にわたり介護現場に携わる中で、私は常に「もっと良くできるはず」という想いを抱いていました。そして、AIという技術と出会い、その無限の可能性に魅了されました。20年間の介護経験で培った現場の知識と、AIの最先端技術を融合させることで、介護施設の皆さまが抱える課題を解決し、より明るく、効率的な未来を築けると確信しております。特に「AIは難しそう…」と感じている方々にこそ、寄り添い、分かりやすく、そして安心して導入いただけるよう、心を込めてサポートいたします。私たち「よりそうAI」は、介護現場の皆さまと共に歩み、温かいAIの力で、一人ひとりの笑顔を増やしていくことを目指します。<!-- MESSAGE_END --></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+<!-- WORRY_SECTION_START -->
+<section class="empathy">
+  <div class="wrap slide-in-left">
+    <h2 class="section-title">こんなお悩みありませんか？</h2>
+    <div class="worry-grid">
+      <!-- WORRY_BLOCK_START --><div class="worry-card">AI導入の難しさへの不安</div>
+<div class="worry-card">業務効率化の課題</div>
+<div class="worry-card">スタッフの負担増加</div><!-- WORRY_BLOCK_END -->
+    </div>
+  </div>
+</section>
+<!-- WORRY_SECTION_END -->
+
+<!-- REASONS_SECTION_START -->
+<section class="reasons">
+  <div class="wrap slide-in-right">
+    <h2 class="section-title">よりそうAIが選ばれる理由</h2>
+    <div class="reason-list">
+      <!-- REASONS_BLOCK_START -->
+    <div class="reason-card">
+      <span class="reason-num">01</span>
+      <h3>20年の介護経験に基づくAI活用提案</h3>
+      <p>介護施設の未来をAIで明るくする</p>
+    </div>
+
+    <div class="reason-card">
+      <span class="reason-num">02</span>
+      <h3>AIが苦手な方も安心のサポート体制</h3>
+      <p>介護施設の未来をAIで明るくする</p>
+    </div>
+
+    <div class="reason-card">
+      <span class="reason-num">03</span>
+      <h3>明るい未来を創造するAIソリューション</h3>
+      <p>介護施設の未来をAIで明るくする</p>
+    </div><!-- REASONS_BLOCK_END -->
+    </div>
+  </div>
+</section>
+<!-- REASONS_SECTION_END -->
+
+
+
+
+
+
+
+<!-- FLOW_SECTION_START -->
+<section class="flow">
+  <div class="wrap slide-in-right">
+    <h2 class="section-title">ご利用開始までの流れ</h2>
+    <ul class="flow-steps">
+      
+    <li>
+      <div class="step-title">お問い合わせ</div>
+      
+    </li>
+
+    <li>
+      <div class="step-title">公式Lineから面談</div>
+      
+    </li>
+
+    <li>
+      <div class="step-title">ご利用開始</div>
+      
+    </li>
+    </ul>
+  </div>
+</section>
+<!-- FLOW_SECTION_END -->
+
+<section class="info">
+  <div class="wrap slide-in-left">
+    <h2 class="section-title">料金・対応エリア</h2>
+    <div class="info-grid">
+      <!-- AREA_SECTION_START -->
+      <div class="info-card">
+        <div class="label">対応エリア</div>
+        <div class="value">全国</div>
+      </div>
+      <!-- AREA_SECTION_END -->
+      <!-- HOLIDAY_SECTION_START -->
+      <div class="info-card">
+        <div class="label">定休日</div>
+        <div class="value"><!-- HOLIDAY_START -->平日9時から18時<!-- HOLIDAY_END --></div>
+      </div>
+      <!-- HOLIDAY_SECTION_END -->
+      <div class="info-card">
+        <div class="label">お電話</div>
+        <div class="value"><!-- TEL_START -->09020311103<!-- TEL_END --></div>
+      </div>
+      
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+
+<footer>
+  <div class="wrap">
+    <div class="office-name">よりそうAI</div>
+    <div class="foot-grid">
+      <div><span>電話番号</span><!-- TEL_START -->09020311103<!-- TEL_END --></div>
+      <!-- ADDRESS_SECTION_START -->
+      <div><span>所在地</span><!-- ADDRESS_START -->福井県吉田郡永平寺町谷口<!-- ADDRESS_END --></div>
+      <!-- ADDRESS_SECTION_END -->
+      <!-- AREA_SECTION_START -->
+      <div><span>対応エリア</span>全国</div>
+      <!-- AREA_SECTION_END -->
+      <!-- HOLIDAY_SECTION_START -->
+      <div><span>定休日</span><!-- HOLIDAY_START -->平日9時から18時<!-- HOLIDAY_END --></div>
+      <!-- HOLIDAY_SECTION_END -->
+    </div>
+    <div class="copyright">&copy; よりそうAI All Rights Reserved.</div>
+  </div>
+</footer>
+
+<script>
+  // スクロール時のアニメーション発火
+  document.addEventListener("DOMContentLoaded", function() {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.fade-in-up').forEach(el => {
+      observer.observe(el);
+    });
+  });
+</script>
+
+<style>
+  .leadgen-launcher{position:fixed;bottom:20px;right:20px;z-index:999;background:#3498DB;color:#fff;width:60px;height:60px;border-radius:50%;border:none;box-shadow:0 4px 15px rgba(0,0,0,0.2);font-size:1.6rem;cursor:pointer;display:flex;align-items:center;justify-content:center;}
+  .leadgen-panel{position:fixed;bottom:90px;right:20px;z-index:999;width:min(340px, calc(100vw - 40px));max-height:70vh;background:#fff;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,0.2);display:none;flex-direction:column;overflow:hidden;font-family:'Noto Sans JP',sans-serif;}
+  .leadgen-panel.open{display:flex;}
+  .leadgen-tabs{display:flex;border-bottom:1px solid #eee;}
+  .leadgen-tabs button{flex:1;padding:12px;border:none;background:#F4F7F8;cursor:pointer;font-size:0.85rem;font-weight:bold;color:#888;}
+  .leadgen-tabs button.active{background:#fff;color:#3498DB;border-bottom:2px solid #3498DB;}
+  .leadgen-body{padding:16px;overflow-y:auto;flex:1;}
+  .leadgen-tabpage{display:none;}
+  .leadgen-tabpage.active{display:block;}
+  .leadgen-body input, .leadgen-body textarea{width:100%;padding:10px;border:1px solid #D5DBDB;border-radius:6px;box-sizing:border-box;font-size:0.9rem;margin-bottom:10px;font-family:inherit;}
+  .leadgen-body textarea{min-height:70px;resize:vertical;}
+  .leadgen-body button.submit{width:100%;padding:10px;border:none;border-radius:6px;background:#3498DB;color:#fff;font-weight:bold;cursor:pointer;}
+  .leadgen-msg{font-size:0.8rem;margin-top:8px;text-align:center;}
+  .leadgen-msg.ok{color:#1E7B4D;}
+  .leadgen-msg.ng{color:#B23B3B;}
+  .chat-log{display:flex;flex-direction:column;gap:8px;margin-bottom:10px;max-height:260px;overflow-y:auto;}
+  .chat-bubble{padding:8px 12px;border-radius:12px;font-size:0.85rem;line-height:1.5;max-width:85%;}
+  .chat-bubble.user{align-self:flex-end;background:#3498DB;color:#fff;}
+  .chat-bubble.ai{align-self:flex-start;background:#F0F2F4;color:#333;}
+  .chat-input-row{display:flex;gap:6px;}
+  .chat-input-row input{flex:1;margin-bottom:0;}
+  .chat-input-row button{padding:0 16px;border:none;border-radius:6px;background:#3498DB;color:#fff;cursor:pointer;}
+</style>
+
+<button class="leadgen-launcher" id="leadgenLauncher" onclick="toggleLeadgenPanel()">💬</button>
+<div class="leadgen-panel" id="leadgenPanel">
+  <div class="leadgen-tabs">
+    <button id="tabChatBtn" class="active" onclick="switchLeadgenTab('chat')">AIに相談</button>
+    <button id="tabFormBtn" onclick="switchLeadgenTab('form')">お問い合わせ</button>
+  </div>
+  <div class="leadgen-body">
+    <div class="leadgen-tabpage active" id="tabChat">
+      <div class="chat-log" id="chatLog">
+        <div class="chat-bubble ai">こんにちは！このホームページについて、気になることがあればお気軽にご質問ください。</div>
+      </div>
+      <div class="chat-input-row">
+        <input type="text" id="chatInput" placeholder="質問を入力..." onkeydown="if(event.key==='Enter')sendChatMessage()">
+        <button onclick="sendChatMessage()">送信</button>
+      </div>
+    </div>
+    <div class="leadgen-tabpage" id="tabForm">
+      <input type="text" id="contactName" placeholder="お名前">
+      <input type="text" id="contactWay" placeholder="電話番号またはメールアドレス">
+      <textarea id="contactMessage" placeholder="ご相談内容"></textarea>
+      <button class="submit" onclick="submitContactForm()">送信する</button>
+      <div class="leadgen-msg" id="contactMsg"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const LEADGEN_UNIQUE_ID = "xuc6u8uz";
+  const LEADGEN_WEBAPP_URL = "https://script.google.com/macros/s/AKfycbzFF7mskDCM0wga2e1SPWnqK7bUg3urPjR9zB_RjJYGFj5F3PxcSZz1_NRx3Hj62YNx9Q/exec";
+  const LEADGEN_CHAT_CONTEXT = {"officeName":"よりそうAI","serviceType":"その他","catchCopy":"介護施設の未来をAIで明るくする","message":"長年にわたり介護現場に携わる中で、私は常に「もっと良くできるはず」という想いを抱いていました。そして、AIという技術と出会い、その無限の可能性に魅了されました。20年間の介護経験で培った現場の知識と、AIの最先端技術を融合させることで、介護施設の皆さまが抱える課題を解決し、より明るく、効率的な未来を築けると確信しております。特に「AIは難しそう…」と感じている方々にこそ、寄り添い、分かりやすく、そして安心して導入いただけるよう、心を込めてサポートいたします。私たち「よりそうAI」は、介護現場の皆さまと共に歩み、温かいAIの力で、一人ひとりの笑顔を増やしていくことを目指します。","reasonsRaw":"20年の介護経験に基づくAI活用提案, AIが苦手な方も安心のサポート体制, 明るい未来を創造するAIソリューション","area":"全国","holiday":"平日9時から18時","phone":"09020311103","faqRaw":""};
+  let leadgenChatHistory = [];
+
+  function toggleLeadgenPanel() {
+    document.getElementById('leadgenPanel').classList.toggle('open');
+  }
+  function switchLeadgenTab(tab) {
+    document.getElementById('tabChat').classList.toggle('active', tab === 'chat');
+    document.getElementById('tabForm').classList.toggle('active', tab === 'form');
+    document.getElementById('tabChatBtn').classList.toggle('active', tab === 'chat');
+    document.getElementById('tabFormBtn').classList.toggle('active', tab === 'form');
+  }
+
+  function appendChatBubble(text, role) {
+    const log = document.getElementById('chatLog');
+    const bubble = document.createElement('div');
+    bubble.className = 'chat-bubble ' + (role === 'user' ? 'user' : 'ai');
+    bubble.textContent = text;
+    log.appendChild(bubble);
+    log.scrollTop = log.scrollHeight;
+  }
+
+  async function sendChatMessage() {
+    const input = document.getElementById('chatInput');
+    const text = input.value.trim();
+    if (!text) return;
+    appendChatBubble(text, 'user');
+    leadgenChatHistory.push({ role: 'user', text: text });
+    input.value = '';
+    appendChatBubble('...', 'ai-typing');
+    const log = document.getElementById('chatLog');
+
+    try {
+      const res = await fetch(LEADGEN_WEBAPP_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify({ type: 'chat', context: LEADGEN_CHAT_CONTEXT, message: text, history: leadgenChatHistory })
+      });
+      const json = await res.json();
+      log.removeChild(log.lastChild);
+      const reply = json.success ? json.reply : (json.error || 'エラーが発生しました。');
+      appendChatBubble(reply, 'ai');
+      leadgenChatHistory.push({ role: 'assistant', text: reply });
+    } catch (err) {
+      log.removeChild(log.lastChild);
+      appendChatBubble('通信エラーが発生しました。お電話でお問い合わせください。', 'ai');
+    }
+  }
+
+  async function submitContactForm() {
+    const name = document.getElementById('contactName').value.trim();
+    const contact = document.getElementById('contactWay').value.trim();
+    const message = document.getElementById('contactMessage').value.trim();
+    const msgEl = document.getElementById('contactMsg');
+    msgEl.className = 'leadgen-msg';
+
+    if (!name || !contact || !message) {
+      msgEl.className = 'leadgen-msg ng';
+      msgEl.textContent = 'すべての項目をご記入ください。';
+      return;
+    }
+
+    msgEl.textContent = '送信中...';
+    try {
+      const res = await fetch(LEADGEN_WEBAPP_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify({ type: 'contact', uniqueId: LEADGEN_UNIQUE_ID, name: name, contact: contact, message: message })
+      });
+      const json = await res.json();
+      if (json.success) {
+        msgEl.className = 'leadgen-msg ok';
+        msgEl.textContent = '送信しました。担当者よりご連絡いたします。';
+        document.getElementById('contactName').value = '';
+        document.getElementById('contactWay').value = '';
+        document.getElementById('contactMessage').value = '';
+      } else {
+        msgEl.className = 'leadgen-msg ng';
+        msgEl.textContent = json.error || '送信に失敗しました。';
+      }
+    } catch (err) {
+      msgEl.className = 'leadgen-msg ng';
+      msgEl.textContent = '通信エラーが発生しました。時間をおいて再度お試しください。';
+    }
+  }
+</script>
+
+<style>
+  .reason-card, .worry-card, .staff-card, .info-card, .faq-item, .news-item {
+    transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.35s ease;
+  }
+  .reason-card:hover, .staff-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 32px rgba(0,0,0,0.08);
+  }
+  .worry-card:hover, .info-card:hover, .faq-item:hover {
+    transform: translateY(-3px);
+  }
+  .gallery-grid img { transition: transform 0.5s ease; overflow: hidden; }
+  .gallery-grid img:hover { transform: scale(1.05); }
+  .tel-btn, .tel-btn-white, .sns-btn { transition: transform 0.15s ease, box-shadow 0.15s ease; }
+  .tel-btn:active, .tel-btn-white:active, .sns-btn:active { transform: scale(0.96); }
+
+  .mi-reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .mi-reveal.mi-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .mi-reveal { opacity: 1; transform: none; transition: none; }
+    .reason-card, .worry-card, .staff-card, .info-card, .faq-item, .gallery-grid img { transition: none; }
+  }
+</style>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    // 対象カードに、少しずつ時間差をつけながらふわっと現れる演出をつける
+    var targets = document.querySelectorAll(
+      '.reason-card, .worry-card, .staff-card, .info-card, .faq-item, .gallery-grid img, .news-item, .flow-steps li'
+    );
+    targets.forEach(function (el) { el.classList.add('mi-reveal'); });
+
+    var seen = new WeakMap();
+    var order = new WeakMap();
+    targets.forEach(function (el) {
+      var parent = el.parentElement;
+      var count = order.get(parent) || 0;
+      seen.set(el, count);
+      order.set(parent, count + 1);
+    });
+
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          var delay = Math.min(seen.get(entry.target) || 0, 6) * 80;
+          setTimeout(function () { entry.target.classList.add('mi-visible'); }, delay);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+
+    targets.forEach(function (el) { observer.observe(el); });
+  });
+</script>
+</body>
+</html>
